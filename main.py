@@ -19,7 +19,6 @@ app.add_middleware(
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Serve static files (optional if you add CSS later)
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
 async def home():

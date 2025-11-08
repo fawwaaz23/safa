@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 import google.generativeai as genai
 import os
+import uvicorn
 
 app = FastAPI()
 
@@ -62,3 +63,8 @@ async def generate_recipe(ingredients: str = Form(...)):
     </body>
     </html>
     """
+
+# ✅ This part is REQUIRED for Render to detect the running port
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
